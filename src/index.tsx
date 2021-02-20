@@ -1,18 +1,17 @@
 // DEPENDENCIES
 import React from "react";
 import ReactDOM from "react-dom";
-import { createBrowserHistory } from "history";
 
 // REDUX
 import { Provider } from "react-redux";
 import configureStore from "./redux/configureStore";
 
 // COMPONENTS
-import App from "./App";
+import App from "./components/App";
 
 import reportWebVitals from "./reportWebVitals";
 
-// CONFIG STORE
+// CONFIGURE STORE
 import { history } from './utils/history'
 const store = configureStore({}, history);
 

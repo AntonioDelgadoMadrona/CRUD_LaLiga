@@ -5,6 +5,16 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { getUserListAction } from "../../redux/actions/userActions/userActions";
 
+// COMPONENTS
+import { Table } from '../generic/Table/Table';
+
+// STYLED
+import { UserListContainer as Container } from './UserList.styles';
+
+const headersList = [
+    'Avatar', 'Nombre', 'Apellido/s', 'Email'
+];
+
 const UserList: React.FC = React.memo((props: any) => {
 
     const { getUserListAction, userList, gettingUserList } = props;
@@ -13,10 +23,32 @@ const UserList: React.FC = React.memo((props: any) => {
         getUserListAction();
     }, []);
 
+    // SAVE THE CORRECT COLLECTION FOR SHOW IN ORDER
+    let users: any = [];
+    if (userList.length > 0) {
+        userList.map((user: any) => {
+            const updatedItem = {
+                avatar: <img src={user.avatar} alt={user.first_name}></img>,
+                firstName: user.first_name,
+                lastName: user.last_name,
+                email: user.email,
+                id: user.id,
+                actionButtons: [
+                    { title: 'Ver más', color: 'secondary', size: 'small', outline: true, handler: 'view' }
+                ]
+            };
+            return users = [...users, updatedItem];
+        })
+    };
+
     return (
-        <div>
-            <h2>UserList</h2>
-        </div>
+        <Container>
+            <h2>User List</h2>
+            <Table
+                headers={headersList}
+                items={users}
+            />
+        </Container>
     );
 });
 
