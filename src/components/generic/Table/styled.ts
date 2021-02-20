@@ -7,6 +7,7 @@ export const StyledTable = styled.div`
   border-radius: 10px;
   box-shadow: 0 2px 2px rgb(0 0 0 / 10%);
   width: 100%;
+  height: auto;
 `;
 
 export const StyledTableContainer = styled.div`
@@ -40,7 +41,7 @@ export const StyledTableContainer = styled.div`
 
 export const StyledTHead = styled.thead`
   color: black;
-  font-size: 13px;
+  font-size: 16px;
 `;
 
 export const StyledTHRow = styled.tr`
@@ -48,7 +49,8 @@ export const StyledTHRow = styled.tr`
     width: max-content;
     display: block;
     margin: 0 auto;
-    font-weight: 500;
+    font-weight: bold;
+    padding-bottom: 5px;
   }
   & th {
     background-color: #fff;

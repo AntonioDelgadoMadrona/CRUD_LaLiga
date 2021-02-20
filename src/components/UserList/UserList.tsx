@@ -1,74 +1,110 @@
 // DEPENDENCIES
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 // REDUX
 import { connect } from "react-redux";
 import { getUserListAction } from "../../redux/actions/userActions/userActions";
 
 // COMPONENTS
-import { Table } from '../generic/Table/Table';
+import { Table } from "../generic/Table/Table";
+
+// UTILS
+import { history } from "../../utils/history";
+import { IUser } from "../../interfaces/IUser";
 
 // STYLED
-import { UserListContainer as Container } from './UserList.styles';
+import { UserListContainer as Container, StyledAvatarImg } from "./UserList.styles";
 
-const headersList = [
-    'Avatar', 'Nombre', 'Apellido/s', 'Email'
-];
+interface IProps {
+  getUserListAction: any;
+  userList: IUser[];
+  gettingUserList: boolean;
+  userPagination: {};
+}
 
-const UserList: React.FC = React.memo((props: any) => {
+const headersList = ["Avatar", "Nombre", "Apellido/s", "Email"];
 
-    const { getUserListAction, userList, gettingUserList } = props;
+const UserList = React.memo<IProps>((props) => {
+  const { getUserListAction, userList, gettingUserList, userPagination } = props;
 
-    useEffect(() => {
-        getUserListAction();
-    }, []);
+  const initialState = {
+    currentPage: 1,
+  };
 
-    // SAVE THE CORRECT COLLECTION FOR SHOW IN ORDER
-    let users: any = [];
-    if (userList.length > 0) {
-        userList.map((user: any) => {
-            const updatedItem = {
-                avatar: <img src={user.avatar} alt={user.first_name}></img>,
-                firstName: user.first_name,
-                lastName: user.last_name,
-                email: user.email,
-                id: user.id,
-                actionButtons: [
-                    { title: 'Ver más', color: 'secondary', size: 'small', outline: true, handler: 'view' }
-                ]
-            };
-            return users = [...users, updatedItem];
-        })
-    };
+  const [state, setState] = useState(initialState);
 
-    return (
-        <Container>
-            <h2>User List</h2>
-            <Table
-                headers={headersList}
-                items={users}
-            />
-        </Container>
-    );
+  useEffect(() => {
+    getUserListAction(state);
+  }, [getUserListAction, state]);
+
+  // RECEIVE THE ORDER OF DIFFERENTS BUTTONS
+  const handleButtons = (data: any) => {
+    const { handler, id } = data;
+    if (handler === "view") history.push({ pathname: "/User", search: `?id=${id}` });
+  };
+
+  // CHANGE THE PAGE FROM TABLE
+  const handlePage = (selectedPage: number) => {
+    setState((prevState) => ({ ...prevState, currentPage: selectedPage }));
+  };
+
+  // SAVE THE CORRECT COLLECTION FOR SHOW IN ORDER
+  let users: any = [];
+  if (userList.length > 0) {
+    userList.map((user: any) => {
+      const updatedItem = {
+        avatar: (
+          <StyledAvatarImg>
+            <img src={user.avatar} alt={user.first_name}></img>
+          </StyledAvatarImg>
+        ),
+        firstName: user.first_name,
+        lastName: user.last_name,
+        email: user.email,
+        id: user.id,
+        actionButtons: [
+          {
+            title: "Ver",
+            color: "secondary",
+            size: "medium",
+            outline: false,
+            handler: "view",
+          },
+        ],
+      };
+      return (users = [...users, updatedItem]);
+    });
+  }
+
+  return (
+    <Container>
+      <h2>User List</h2>
+      <Table
+        headers={headersList}
+        items={users}
+        handleButtons={handleButtons}
+        page={userPagination}
+        handlePage={handlePage}
+      />
+    </Container>
+  );
 });
 
 const mapStateToProps = (state: any) => {
-    const { userReducer } = state;
-    return {
-        userList: userReducer.userList,
-        gettingUserList: userReducer.gettingUserList,
-    };
+  const { userReducer } = state;
+  return {
+    userList: userReducer.userList,
+    gettingUserList: userReducer.gettingUserList,
+    userPagination: userReducer.userPagination,
+  };
 };
 
 const mapDispatchToProps = {
-    getUserListAction,
+  getUserListAction,
 };
 
 export { UserList };
 
-const UserListContainer = connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(UserList);
+const UserListContainer = connect(mapStateToProps, mapDispatchToProps)(UserList);
 
 export default UserListContainer;
