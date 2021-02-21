@@ -26,7 +26,7 @@ export const StyledFullScreen = styled.div`
       font-size: 25px;
 
       & > img {
-        width: 100px;
+        width: 80px;
         animation: rotation 2s infinite linear;
       }
 

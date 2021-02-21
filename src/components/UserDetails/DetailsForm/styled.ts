@@ -5,6 +5,8 @@ export const ContainerInput = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 30%);
   grid-template-rows: repeat(2, auto);
+  height: auto;
+  min-height: 300px;
 
   background-color: #fff;
   padding: 20px;
@@ -12,6 +14,7 @@ export const ContainerInput = styled.div`
   justify-content: space-between;
   box-shadow: 0 2px 2px rgb(0 0 0 / 10%);
   margin-bottom: 30px;
+  box-sizing: border-box;
 
   & > div {
     margin-bottom: 20px;

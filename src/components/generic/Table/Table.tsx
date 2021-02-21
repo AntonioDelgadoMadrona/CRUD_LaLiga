@@ -63,27 +63,25 @@ const Table = React.memo<IProps>((props) => {
                     {/* ---- ACTION BUTTONS ----- */}
                     {item.actionButtons && item.actionButtons.length > 0 && (
                       <StyledTd key={index + 20000}>
-                        {item.actionButtons.map(
-                          (button: any, buttonIndex: number) => {
-                            return (
-                              <Button
-                                key={button.title + buttonIndex}
-                                color={button.color}
-                                size={button.size}
-                                outline={button.outline}
-                                disabled={button.disabled}
-                                onClick={() =>
-                                  handleButtons({
-                                    handler: button.handler,
-                                    id: item.id,
-                                  })
-                                }
-                              >
-                                {button.title}
-                              </Button>
-                            );
-                          }
-                        )}
+                        {item.actionButtons.map((button: any, buttonIndex: number) => {
+                          return (
+                            <Button
+                              key={button.title + buttonIndex}
+                              color={button.color}
+                              size={button.size}
+                              outline={button.outline}
+                              disabled={button.disabled}
+                              onClick={() =>
+                                handleButtons({
+                                  handler: button.handler,
+                                  id: item.id,
+                                })
+                              }
+                            >
+                              {button.title}
+                            </Button>
+                          );
+                        })}
                       </StyledTd>
                     )}
                   </StyledTRow>
@@ -93,8 +91,8 @@ const Table = React.memo<IProps>((props) => {
             {/* ----- NO ITEMS MESSAGE ----- */}
             {items && items.length === 0 && (
               <StyledTRow>
-                <StyledTd colSpan={headers.length}>
-                  <span>No results found</span>
+                <StyledTd className="notResult" colSpan={headers.length}>
+                  <span>No hay usuarios que mostrar</span>
                 </StyledTd>
               </StyledTRow>
             )}

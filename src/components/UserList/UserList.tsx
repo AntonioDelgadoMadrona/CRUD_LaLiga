@@ -13,19 +13,18 @@ import { history } from "../../utils/history";
 import { IUser } from "../../interfaces/IUser";
 
 // STYLED
-import { UserListContainer as Container, StyledAvatarImg } from "./UserList.styles";
+import { UserListContainer as Container, StyledAvatarImg } from "./styled";
 
 interface IProps {
   getUserListAction: any;
   userList: IUser[];
-  gettingUserList: boolean;
   userPagination: {};
 }
 
 const headersList = ["Avatar", "Nombre", "Apellido/s", "Email"];
 
 const UserList = React.memo<IProps>((props) => {
-  const { getUserListAction, userList, gettingUserList, userPagination } = props;
+  const { getUserListAction, userList, userPagination } = props;
 
   const initialState = {
     currentPage: 1,
@@ -94,7 +93,6 @@ const mapStateToProps = (state: any) => {
   const { userReducer } = state;
   return {
     userList: userReducer.userList,
-    gettingUserList: userReducer.gettingUserList,
     userPagination: userReducer.userPagination,
   };
 };

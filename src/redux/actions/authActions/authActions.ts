@@ -1,16 +1,17 @@
 // ACTION / TYPES
 import * as types from './types';
 import * as apiStatus from '../apiStatusActions/apiStatusActions';
+import * as alertActions from '../alertActions/alertActions';
 
 // SERVICES
 import * as authService from '../../../services/authService/authService';
 
 // TYPES
 import { Dispatch } from 'redux';
+import { ILoginUser } from '../../../interfaces/ILoginUser';
 
 // UTILS
 import { history } from '../../../utils/history';
-import { ILoginUser } from '../../../interfaces/ILoginUser';
 
 // LOGIN
 export function loginAction(user: ILoginUser) {
@@ -21,14 +22,16 @@ export function loginAction(user: ILoginUser) {
         dispatch(apiStatus.apiCallRequest());
 
         await authService.login(user)
-            .then(response => {        
+            .then(response => {    
                 dispatch(success({ user, token: response.token }));
                 dispatch(apiStatus.apiCallSuccess());
+                dispatch(alertActions.showToastAction({ message: "Has iniciado sesion", type: "SUCCESS"}));
                 history.replace("/Users");
             })
-            .catch(error => {
+            .catch(() => {
                 dispatch(failure());
                 dispatch(apiStatus.apiCallError());
+                dispatch(alertActions.showToastAction({ message: "Email o contraseña incorrectos", type: "ERROR"}))
             });
     };
 
@@ -39,6 +42,11 @@ export function loginAction(user: ILoginUser) {
 
 // LOGOUT
 export function logoutAction() {
-    // history.push("/Login");
-    return { type: types.LOGOUT_REQUEST };
+
+    return function (dispatch: Dispatch) {        
+        dispatch(alertActions.showToastAction({ message: "¡Gracias, hasta pronto!", type: "SUCCESS"}));
+        dispatch(request());
+    };
+
+    function request() { return { type: types.LOGOUT_REQUEST } };
 };

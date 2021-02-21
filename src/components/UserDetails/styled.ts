@@ -1,6 +1,9 @@
 // DEPENDENCIES
 import styled from 'styled-components';
 
+// STYLED
+import { StyledTable } from './../generic/Table/styled';
+
 export const StyledUserDetails = styled.div`
     width: 100%;
 
@@ -43,6 +46,6 @@ export const ModalContent = styled.div`
     }
 `;
 
-export const StyledGoBack = styled.link`
-    outline: none;
+export const WhiteContainer = styled.div`
+    ${StyledTable}
 `;

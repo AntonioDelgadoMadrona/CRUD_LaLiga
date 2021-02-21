@@ -9,6 +9,7 @@ import { logoutAction } from "../../redux/actions/authActions/authActions";
 // COMPONENTS
 import { Navbar } from "../Navbar/Navbar";
 import { FullScreenSpinner } from "../generic/FullScreenSpinner/FullScreenSpinner";
+import { Toast } from "../generic/Toast/Toast";
 
 // STYLED
 import { Layout as Container, Wrapper } from "./styled";
@@ -26,17 +27,19 @@ const Layout = React.memo((props: any) => {
         <Navbar logged={props.logged} email={props.email} logoutAction={props.logoutAction} />
       )}
       {props.isLoading && <FullScreenSpinner />}
+      {props.toast && <Toast toast={props.toast} />}
       <Wrapper path={pathname}>{props.children}</Wrapper>
     </Container>
   );
 });
 
 const mapStateToProps = (state: any) => {
-  const { authReducer, apiStatusReducer } = state;
+  const { authReducer, apiStatusReducer, alertReducer } = state;
   return {
     logged: authReducer.logged,
     email: authReducer.email,
-    isLoading: apiStatusReducer > 0
+    isLoading: apiStatusReducer > 0,
+    toast: alertReducer.toast,
   };
 };
 

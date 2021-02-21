@@ -21,9 +21,10 @@ import { isEqual } from "lodash";
 import { validateName, validateEmailAddress } from "../../utils/validations";
 
 // STYLED
-import { StyledUserDetails as Container, ModalContent, StyledGoBack } from "./styled";
+import { StyledUserDetails as Container, ModalContent } from "./styled";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
+import { ContainerInput } from "./DetailsForm/styled";
 
 interface IProps {
   getUserDetailsAction: Function;
@@ -57,7 +58,8 @@ const UserDetails = React.memo<IProps>(
 
     useEffect(() => {
       getUserDetailsAction(userId);
-    }, [getUserDetailsAction, userId]);
+      return () => setUser(initialState);
+    }, []);
 
     useEffect(() => {
       setUser((prevUser) => ({ ...prevUser, ...userDetails }));
@@ -118,10 +120,10 @@ const UserDetails = React.memo<IProps>(
               handleChange={handleChange}
               handleClick={handleClick}
               errors={errors}
-              isLoading={isLoading}
               updated={updated}
             />
           )}
+          {!userDetails && <ContainerInput></ContainerInput>}
         </div>
 
         {/* UPDATE MODAL */}
@@ -134,7 +136,6 @@ const UserDetails = React.memo<IProps>(
                 size="medium"
                 outline={false}
                 onClick={() => setModal({ delete: false, update: false })}
-                disabled={isLoading}
               >
                 Cancelar
               </Button>
@@ -146,7 +147,6 @@ const UserDetails = React.memo<IProps>(
                 onClick={() =>
                   updateUserAction(user, () => setModal({ delete: false, update: false }))
                 }
-                disabled={isLoading}
               >
                 Actualizar
               </Button>
@@ -164,7 +164,6 @@ const UserDetails = React.memo<IProps>(
                 size="medium"
                 outline={false}
                 onClick={() => setModal({ delete: false, update: false })}
-                disabled={isLoading}
               >
                 Cancelar
               </Button>
@@ -174,7 +173,6 @@ const UserDetails = React.memo<IProps>(
                 size="medium"
                 outline={false}
                 onClick={() => deleteUserAction(user.id)}
-                disabled={isLoading}
               >
                 Eliminar
               </Button>
@@ -191,8 +189,7 @@ const mapStateToProps = (state: any, ownProps: any) => {
   const urlFilters = queryString.decode(ownProps.location.search.replace("?", ""));
   return {
     userId: urlFilters.id,
-    userDetails: userReducer.userDetails,
-    isLoading: userReducer.isLoading,
+    userDetails: userReducer.userDetails
   };
 };
 

@@ -8,6 +8,7 @@ export const StyledTable = styled.div`
   box-shadow: 0 2px 2px rgb(0 0 0 / 10%);
   width: 100%;
   height: auto;
+  min-height: 600px;
   box-sizing: border-box;
 `;
 
@@ -80,5 +81,10 @@ export const StyledTd = styled.td`
   & span {
     width: max-content;
     display: inline-block;
+  }
+
+  &.notResult {
+    font-size: 20px;
+    height: 40px;
   }
 `;

@@ -1,6 +1,7 @@
 // ACTION / TYPES
 import * as types from './types';
 import * as apiStatus from '../apiStatusActions/apiStatusActions';
+import * as alertActions from '../alertActions/alertActions';
 
 // SERVICES
 import * as userService from '../../../services/userService/userService';
@@ -25,7 +26,7 @@ export function getUserListAction(data: any) {
                 dispatch(success(response));
                 dispatch(apiStatus.apiCallSuccess());
             })
-            .catch(error => {
+            .catch(() => {
                 dispatch(failure());
                 dispatch(apiStatus.apiCallError());
             });
@@ -49,9 +50,10 @@ export function getUserDetailsAction(id: string) {
                 dispatch(success(response.data));
                 dispatch(apiStatus.apiCallSuccess());
             })
-            .catch(error => {
+            .catch(() => {
                 dispatch(failure());
                 dispatch(apiStatus.apiCallError());
+                dispatch(alertActions.showToastAction({ message: "Hubo un problema, vuelta a intentarlo", type: "ERROR"}));
             });
     };
 
@@ -72,6 +74,7 @@ export function deleteUserAction(id: string) {
             .then(response => {
                 dispatch(success());
                 dispatch(apiStatus.apiCallSuccess());
+                dispatch(alertActions.showToastAction({ message: "Usuario eliminado", type: "SUCCESS"}));
                 history.push("/users");
             })
             .catch(error => {
@@ -98,6 +101,7 @@ export function updateUserAction(user: IUser, callback: any) {
                 dispatch(success(user));
                 if(callback) callback();
                 dispatch(apiStatus.apiCallSuccess());
+                dispatch(alertActions.showToastAction({ message: "Usuario actualizado", type: "SUCCESS"}));
             })
             .catch(error => {
                 dispatch(failure());

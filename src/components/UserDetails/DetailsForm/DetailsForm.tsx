@@ -13,7 +13,6 @@ interface IProps {
   handleChange: any;
   handleClick: any;
   errors: any;
-  isLoading: boolean;
   updated: boolean;
 }
 
@@ -73,7 +72,6 @@ const DetailsForm = React.memo<IProps>(({ user, errors, handleClick, handleChang
         <Button
           color="danger"
           size="medium"
-          disabled={false}
           onClick={() => handleClick("delete")}
           outline={false}
         >

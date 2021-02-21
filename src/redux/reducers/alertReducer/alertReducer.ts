@@ -8,8 +8,8 @@ export default function alertReducer(state = {}, action: any) {
       return {
         ...state,
         toast: {
-          color: action.payload.color,
-          message: action.payload.message,
+            message: action.payload.message,
+            type: action.payload.type
         },
       };
     // CLEAR ALERTS
