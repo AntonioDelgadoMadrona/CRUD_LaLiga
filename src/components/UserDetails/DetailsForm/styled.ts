@@ -11,7 +11,7 @@ export const ContainerInput = styled.div`
   border-radius: 10px;
   justify-content: space-between;
   box-shadow: 0 2px 2px rgb(0 0 0 / 10%);
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 
   & > div {
     margin-bottom: 20px;
@@ -20,16 +20,20 @@ export const ContainerInput = styled.div`
 `;
 
 export const StyledImg = styled.div`
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
   grid-column: 1 / -1;
+  margin: 10px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   & img,
   & svg {
     position: relative;
     float: left;
-    width: 100%;
-    height: 100%;
+    width: 90%;
+    height: 90%;
     overflow: hidden;
     border-radius: 50%;
     box-shadow: 0 5px 5px rgb(0 0 0 / 25%);

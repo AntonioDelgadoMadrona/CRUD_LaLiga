@@ -32,7 +32,7 @@ const DetailsForm = React.memo<IProps>(({ user, errors, handleClick, handleChang
           onChange={handleChange}
           placeholder=""
           value={user.firstName}
-          error={"Email is required"}
+          error={errors.firstName}
           disabled={false}
         />
 
@@ -43,7 +43,7 @@ const DetailsForm = React.memo<IProps>(({ user, errors, handleClick, handleChang
           onChange={handleChange}
           placeholder=""
           value={user.lastName}
-          error={"Email is required"}
+          error={errors.lastName}
           disabled={false}
         />
 
@@ -54,7 +54,7 @@ const DetailsForm = React.memo<IProps>(({ user, errors, handleClick, handleChang
           onChange={handleChange}
           placeholder=""
           value={user.email}
-          error={"Email is required"}
+          error={errors.email}
           disabled={false}
         />
       </ContainerInput>

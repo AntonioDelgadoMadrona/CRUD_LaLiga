@@ -1,6 +1,7 @@
 // DEPENDENCIES
 import React, { useEffect, useState } from "react";
 import queryString from "querystring";
+import { Link } from "react-router-dom";
 
 // REDUX
 import { connect } from "react-redux";
@@ -8,12 +9,15 @@ import { getUserDetailsAction } from "../../redux/actions/userActions/userAction
 
 // COMPONENTS
 import { DetailsForm } from "./DetailsForm/DetailsForm";
+import { Modal } from "../generic/Modal/Modal";
 
 // UTILS
 import { isEqual } from "lodash";
+import { validateEmailAddress } from "../../utils/validations";
 
 // STYLED
-import { StyledUserDetails as Container } from "./styled";
+import { StyledUserDetails as Container, ModalContent } from "./styled";
+import { Button } from "../generic/Button/Button";
 
 interface IProps {
   getUserDetailsAction: any;
@@ -56,9 +60,29 @@ const UserDetails = React.memo<IProps>((props) => {
 
   // UPDATE THE USER
   const handleClick = (handler: string) => {
-    debugger;
-    if (handler === "update") setModal({ update: true, delete: false });
-    else if (handler === "delete") setModal({ update: false, delete: true });
+    if (handler === "update") {
+      if (!validateForm()) return;
+      setModal({ update: true, delete: false });
+    } else if (handler === "delete") setModal({ update: false, delete: true });
+  };
+
+  // CHECKS THE DIFFERENT INPUTS
+  const validateForm = () => {
+    let errors: any = {};
+    const { firstName, lastName, email } = user;
+
+    if (!firstName) errors.firstName = "No puede estar vacío";
+    else if (firstName.length < 3) errors.firstName = "Mínimo 3 caracteres";
+
+    if (!lastName) errors.lastName = "No puede estar vacío";
+    else if (lastName.length < 3) errors.lastName = "Mínimo 3 caracteres";
+
+    if (!email) errors.email = "No puede estar vacío";
+    else if (!validateEmailAddress(email)) errors.email = "Email no válido";
+
+    setErrors(errors);
+
+    return Object.keys(errors).length === 0;
   };
 
   // DETECT IF SOME INFO CHANGED
@@ -67,6 +91,7 @@ const UserDetails = React.memo<IProps>((props) => {
 
   return (
     <Container>
+      <Link to="/users">Atras</Link>
       <h2>User Details</h2>
       <div>
         {userDetails && (
@@ -80,6 +105,58 @@ const UserDetails = React.memo<IProps>((props) => {
           />
         )}
       </div>
+
+      {/* UPDATE MODAL */}
+      <Modal show={modal.update} modalClosed={() => setModal({ delete: false, update: false })}>
+        <ModalContent>
+          <strong>¿Estas seguro de que quiere actualizar este usuario?</strong>
+          <div>
+            <Button
+              color="danger"
+              size="medium"
+              outline={false}
+              onClick={() => setModal({ delete: false, update: false })}
+            >
+              Cancelar
+            </Button>
+
+            <Button
+              color="primary"
+              size="medium"
+              outline={false}
+              onClick={() => setModal({ delete: false, update: false })}
+            >
+              Actualizar
+            </Button>
+          </div>
+        </ModalContent>
+      </Modal>
+
+      {/* DELETE MODAL  */}
+      <Modal show={modal.delete} modalClosed={() => setModal({ delete: false, update: false })}>
+        <ModalContent>
+          <strong>¿Estas seguro de que quiere eliminar este usuario?</strong>
+          <div>
+            <Button
+              color="primary"
+              size="medium"
+              outline={false}
+              onClick={() => setModal({ delete: false, update: false })}
+            >
+              Cancelar
+            </Button>
+
+            <Button
+              color="danger"
+              size="medium"
+              outline={false}
+              onClick={() => setModal({ delete: false, update: false })}
+            >
+              Eliminar
+            </Button>
+          </div>
+        </ModalContent>
+      </Modal>
     </Container>
   );
 });
