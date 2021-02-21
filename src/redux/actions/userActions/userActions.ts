@@ -1,15 +1,16 @@
-// TYPES
+// ACTION / TYPES
 import * as types from './types';
+import * as apiStatus from '../apiStatusActions/apiStatusActions';
 
 // SERVICES
 import * as userService from '../../../services/userService/userService';
 
 // TYPES
 import { Dispatch } from 'redux';
+import { IUser } from '../../../interfaces/IUser';
 
 // UTILS
 import { history } from '../../../utils/history';
-import { IUser } from '../../../interfaces/IUser';
 
 // GET USER LIST
 export function getUserListAction(data: any) {
@@ -17,13 +18,16 @@ export function getUserListAction(data: any) {
     return async function (dispatch: Dispatch) {
 
         dispatch(request());
+        dispatch(apiStatus.apiCallRequest());
 
         await userService.getUserList(data)
             .then(response => {                
                 dispatch(success(response));
+                dispatch(apiStatus.apiCallSuccess());
             })
             .catch(error => {
                 dispatch(failure());
+                dispatch(apiStatus.apiCallError());
             });
     };
 
@@ -38,13 +42,16 @@ export function getUserDetailsAction(id: string) {
     return async function (dispatch: Dispatch) {
 
         dispatch(request());
+        dispatch(apiStatus.apiCallRequest());
 
         await userService.getUserDetails(id)
             .then(response => {
                 dispatch(success(response.data));
+                dispatch(apiStatus.apiCallSuccess());
             })
             .catch(error => {
                 dispatch(failure());
+                dispatch(apiStatus.apiCallError());
             });
     };
 
@@ -59,14 +66,17 @@ export function deleteUserAction(id: string) {
     return async function (dispatch: Dispatch) {
 
         dispatch(request());
+        dispatch(apiStatus.apiCallRequest());
 
         await userService.deleteUser(id)
             .then(response => {
                 dispatch(success());
+                dispatch(apiStatus.apiCallSuccess());
                 history.push("/users");
             })
             .catch(error => {
                 dispatch(failure());
+                dispatch(apiStatus.apiCallError());
             });
     };
 
@@ -81,14 +91,17 @@ export function updateUserAction(user: IUser, callback: any) {
     return async function (dispatch: Dispatch) {
 
         dispatch(request());
+        dispatch(apiStatus.apiCallRequest());
 
         await userService.updateUser(user)
             .then(response => {
                 dispatch(success(user));
                 if(callback) callback();
+                dispatch(apiStatus.apiCallSuccess());
             })
             .catch(error => {
                 dispatch(failure());
+                dispatch(apiStatus.apiCallError());
             });
     };
 

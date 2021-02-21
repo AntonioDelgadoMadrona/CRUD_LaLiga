@@ -5,6 +5,8 @@ import { routerReducer, routerMiddleware } from 'react-router-redux';
 
 // REDUCERS
 import userReducer from './reducers/userReducer/userReducer';
+import authReducer from './reducers/authReducer/authReducer';
+import apiStatusReducer from './reducers/apiStatusReducer/apiStatusReducer';
 
 // MIDDLEWARES
 
@@ -24,6 +26,8 @@ export default function configureStore(initialState, browserHistory) {
 
     const rootReducer = combineReducers({
         userReducer,
+        authReducer,
+        apiStatusReducer,
         routing: routerReducer
     });
 

@@ -5,7 +5,7 @@ export const StyledNavbar = styled.header`
   z-index: 100;
   top: 0;
   width: 100%;
-  background: #0d0d1e;
+  background: rgb(12, 27, 35);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -36,9 +36,16 @@ export const LinksContainer = styled.div`
     list-style: none;
     display: flex;
     justify-content: space-between;
+    align-items: flex-end;
 
     & > li {
         margin-right: 10px;
+
+        & strong {
+          margin-right: 30px;
+          color: rgba(218,226,252);
+          font-size: 20px;
+        } 
     }
 
     & a {

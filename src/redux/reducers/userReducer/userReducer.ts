@@ -5,7 +5,7 @@ const initialState = {
   userList: [],
 };
 
-export default function locationReducer(state = initialState, action: any) {
+export default function userReducer(state = initialState, action: any) {
   switch (action.type) {
     // GET USER LIST
     case types.GET_USER_LIST_REQUEST:
@@ -69,4 +69,4 @@ export default function locationReducer(state = initialState, action: any) {
     default:
       return { ...state };
   }
-}
+};

@@ -8,7 +8,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignInAlt, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
-const Navbar = React.memo((props) => {
+interface IProps {
+  logged: boolean;
+  email: string;
+  logoutAction: any;
+}
+
+const Navbar = React.memo<IProps>(({ logged, email, logoutAction }) => {
   return (
     <StyledNavbar>
       {/* LOGO */}
@@ -18,19 +24,18 @@ const Navbar = React.memo((props) => {
 
       {/* LINKS */}
       <LinksContainer>
-        <ul>
-          <li>
-            <Link to="/login">
-              <FontAwesomeIcon icon={faSignInAlt} /> Login
-            </Link>
-          </li>
-          <li>USERNAME</li>
-          <li>
-            <Link to="/">
-              <FontAwesomeIcon icon={faSignOutAlt} /> Logout
-            </Link>
-          </li>
-        </ul>
+        {logged && (
+          <ul>
+            <li>
+              <strong>{email}</strong>
+            </li>
+            <li>
+              <Link to="/Login" onClick={logoutAction}>
+                <FontAwesomeIcon icon={faSignOutAlt} /> Logout
+              </Link>
+            </li>
+          </ul>
+        )}
       </LinksContainer>
     </StyledNavbar>
   );

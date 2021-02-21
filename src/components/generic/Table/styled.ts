@@ -8,11 +8,13 @@ export const StyledTable = styled.div`
   box-shadow: 0 2px 2px rgb(0 0 0 / 10%);
   width: 100%;
   height: auto;
+  box-sizing: border-box;
 `;
 
 export const StyledTableContainer = styled.div`
   display: block;
   overflow-x: auto;
+  box-sizing: content-box;
 
   &::-webkit-scrollbar {
     height: 10px;

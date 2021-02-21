@@ -22,7 +22,7 @@ export const Wrapper = styled.div<IExtendedProps>`
 
   ${(props) =>
     props.path &&
-    props.path === "/login" &&
+    props.path.toLowerCase() === "/login" &&
     `
     width: 100%;
     min-height: 95vh;
