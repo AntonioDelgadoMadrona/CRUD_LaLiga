@@ -5,161 +5,186 @@ import { Link } from "react-router-dom";
 
 // REDUX
 import { connect } from "react-redux";
-import { getUserDetailsAction } from "../../redux/actions/userActions/userActions";
+import {
+  getUserDetailsAction,
+  deleteUserAction,
+  updateUserAction,
+} from "../../redux/actions/userActions/userActions";
 
 // COMPONENTS
 import { DetailsForm } from "./DetailsForm/DetailsForm";
 import { Modal } from "../generic/Modal/Modal";
+import { Button } from "../generic/Button/Button";
 
 // UTILS
 import { isEqual } from "lodash";
-import { validateEmailAddress } from "../../utils/validations";
+import { validateName, validateEmailAddress } from "../../utils/validations";
 
 // STYLED
-import { StyledUserDetails as Container, ModalContent } from "./styled";
-import { Button } from "../generic/Button/Button";
+import { StyledUserDetails as Container, ModalContent, StyledGoBack } from "./styled";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 
 interface IProps {
-  getUserDetailsAction: any;
+  getUserDetailsAction: Function;
   userId: any;
   userDetails: any;
-  gettingUserDetails: boolean;
+  isLoading: boolean;
+  deleteUserAction: Function;
+  updateUserAction: Function;
 }
 
-const UserDetails = React.memo<IProps>((props) => {
-  const { getUserDetailsAction, userId, userDetails, gettingUserDetails } = props;
+const UserDetails = React.memo<IProps>(
+  ({
+    getUserDetailsAction,
+    userId,
+    userDetails,
+    isLoading,
+    deleteUserAction,
+    updateUserAction,
+  }) => {
+    const initialState = {
+      firstName: "",
+      lastName: "",
+      email: "",
+      avatar: "",
+      id: "",
+    };
 
-  const initialState = {
-    firstName: "",
-    lastName: "",
-    email: "",
-    avatar: "",
-    id: "",
-  };
+    const [user, setUser] = useState(initialState);
+    const [modal, setModal] = useState({ delete: false, update: false });
+    const [errors, setErrors] = useState({});
 
-  const [user, setUser] = useState(initialState);
-  const [modal, setModal] = useState({ delete: false, update: false });
-  const [errors, setErrors] = useState({});
+    useEffect(() => {
+      getUserDetailsAction(userId);
+    }, [getUserDetailsAction, userId]);
 
-  useEffect(() => {
-    getUserDetailsAction(userId);
-  }, [getUserDetailsAction, userId]);
+    useEffect(() => {
+      setUser((prevUser) => ({ ...prevUser, ...userDetails }));
+    }, [userDetails]);
 
-  useEffect(() => {
-    if (userDetails) setUser((prevUser) => ({ ...prevUser, ...userDetails }));
-  }, [userDetails]);
+    // SET PROPERTY BY NAME
+    const handleChange = (e: any) => {
+      const { name, value } = e.target;
+      setUser((prevUser) => ({
+        ...prevUser,
+        [name]: value,
+      }));
+    };
 
-  // SET PROPERTY BY NAME
-  const handleChange = (e: any) => {
-    const { name, value } = e.target;
-    setUser((prevUser) => ({
-      ...prevUser,
-      [name]: value,
-    }));
-  };
+    // UPDATE THE USER
+    const handleClick = (handler: string) => {
+      if (handler === "update") {
+        if (!validateForm()) return;
+        setModal({ update: true, delete: false });
+      } else if (handler === "delete") setModal({ update: false, delete: true });
+    };
 
-  // UPDATE THE USER
-  const handleClick = (handler: string) => {
-    if (handler === "update") {
-      if (!validateForm()) return;
-      setModal({ update: true, delete: false });
-    } else if (handler === "delete") setModal({ update: false, delete: true });
-  };
+    // CHECKS THE DIFFERENT INPUTS
+    const validateForm = () => {
+      let errors: any = {};
+      const { firstName, lastName, email } = user;
 
-  // CHECKS THE DIFFERENT INPUTS
-  const validateForm = () => {
-    let errors: any = {};
-    const { firstName, lastName, email } = user;
+      if (!firstName) errors.firstName = "No puede estar vacío";
+      else if (firstName.length < 3) errors.firstName = "Mínimo 3 caracteres";
+      else if (!validateName(firstName)) errors.firstName = "Nombre no válido";
 
-    if (!firstName) errors.firstName = "No puede estar vacío";
-    else if (firstName.length < 3) errors.firstName = "Mínimo 3 caracteres";
+      if (!lastName) errors.lastName = "No puede estar vacío";
+      else if (lastName.length < 3) errors.lastName = "Mínimo 3 caracteres";
+      else if (!validateName(lastName)) errors.lastName = "Apellido/s no válido";
 
-    if (!lastName) errors.lastName = "No puede estar vacío";
-    else if (lastName.length < 3) errors.lastName = "Mínimo 3 caracteres";
+      if (!email) errors.email = "No puede estar vacío";
+      else if (!validateEmailAddress(email)) errors.email = "Email no válido";
 
-    if (!email) errors.email = "No puede estar vacío";
-    else if (!validateEmailAddress(email)) errors.email = "Email no válido";
+      setErrors(errors);
 
-    setErrors(errors);
+      return Object.keys(errors).length === 0;
+    };
 
-    return Object.keys(errors).length === 0;
-  };
+    // DETECT IF SOME INFO CHANGED
+    let updated = false;
+    if (!isEqual(user, userDetails)) updated = true;
 
-  // DETECT IF SOME INFO CHANGED
-  let updated = false;
-  if (!isEqual(user, userDetails)) updated = true;
+    return (
+      <Container>
+        <Link to="/users">
+          <FontAwesomeIcon icon={faAngleLeft} /> Atras
+        </Link>
+        <h2>Detalles del Usuario</h2>
+        <div>
+          {userDetails && (
+            <DetailsForm
+              user={user}
+              handleChange={handleChange}
+              handleClick={handleClick}
+              errors={errors}
+              isLoading={isLoading}
+              updated={updated}
+            />
+          )}
+        </div>
 
-  return (
-    <Container>
-      <Link to="/users">Atras</Link>
-      <h2>User Details</h2>
-      <div>
-        {userDetails && (
-          <DetailsForm
-            user={user}
-            handleChange={handleChange}
-            handleClick={handleClick}
-            errors={errors}
-            isLoading={false}
-            updated={updated}
-          />
-        )}
-      </div>
+        {/* UPDATE MODAL */}
+        <Modal show={modal.update} modalClosed={() => setModal({ delete: false, update: false })}>
+          <ModalContent>
+            <strong>¿Estas seguro de que quiere actualizar este usuario?</strong>
+            <div>
+              <Button
+                color="danger"
+                size="medium"
+                outline={false}
+                onClick={() => setModal({ delete: false, update: false })}
+                disabled={isLoading}
+              >
+                Cancelar
+              </Button>
 
-      {/* UPDATE MODAL */}
-      <Modal show={modal.update} modalClosed={() => setModal({ delete: false, update: false })}>
-        <ModalContent>
-          <strong>¿Estas seguro de que quiere actualizar este usuario?</strong>
-          <div>
-            <Button
-              color="danger"
-              size="medium"
-              outline={false}
-              onClick={() => setModal({ delete: false, update: false })}
-            >
-              Cancelar
-            </Button>
+              <Button
+                color="primary"
+                size="medium"
+                outline={false}
+                onClick={() =>
+                  updateUserAction(user, () => setModal({ delete: false, update: false }))
+                }
+                disabled={isLoading}
+              >
+                Actualizar
+              </Button>
+            </div>
+          </ModalContent>
+        </Modal>
 
-            <Button
-              color="primary"
-              size="medium"
-              outline={false}
-              onClick={() => setModal({ delete: false, update: false })}
-            >
-              Actualizar
-            </Button>
-          </div>
-        </ModalContent>
-      </Modal>
+        {/* DELETE MODAL  */}
+        <Modal show={modal.delete} modalClosed={() => setModal({ delete: false, update: false })}>
+          <ModalContent>
+            <strong>¿Estas seguro de que quiere eliminar este usuario?</strong>
+            <div>
+              <Button
+                color="primary"
+                size="medium"
+                outline={false}
+                onClick={() => setModal({ delete: false, update: false })}
+                disabled={isLoading}
+              >
+                Cancelar
+              </Button>
 
-      {/* DELETE MODAL  */}
-      <Modal show={modal.delete} modalClosed={() => setModal({ delete: false, update: false })}>
-        <ModalContent>
-          <strong>¿Estas seguro de que quiere eliminar este usuario?</strong>
-          <div>
-            <Button
-              color="primary"
-              size="medium"
-              outline={false}
-              onClick={() => setModal({ delete: false, update: false })}
-            >
-              Cancelar
-            </Button>
-
-            <Button
-              color="danger"
-              size="medium"
-              outline={false}
-              onClick={() => setModal({ delete: false, update: false })}
-            >
-              Eliminar
-            </Button>
-          </div>
-        </ModalContent>
-      </Modal>
-    </Container>
-  );
-});
+              <Button
+                color="danger"
+                size="medium"
+                outline={false}
+                onClick={() => deleteUserAction(user.id)}
+                disabled={isLoading}
+              >
+                Eliminar
+              </Button>
+            </div>
+          </ModalContent>
+        </Modal>
+      </Container>
+    );
+  }
+);
 
 const mapStateToProps = (state: any, ownProps: any) => {
   const { userReducer } = state;
@@ -167,12 +192,14 @@ const mapStateToProps = (state: any, ownProps: any) => {
   return {
     userId: urlFilters.id,
     userDetails: userReducer.userDetails,
-    gettingUserDetails: userReducer.gettingUserDetails,
+    isLoading: userReducer.isLoading,
   };
 };
 
 const mapDispatchToProps = {
   getUserDetailsAction,
+  deleteUserAction,
+  updateUserAction,
 };
 
 export { UserDetails };

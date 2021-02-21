@@ -41,7 +41,7 @@ export const StyledTableContainer = styled.div`
 
 export const StyledTHead = styled.thead`
   color: black;
-  font-size: 16px;
+  font-size: 20px;
 `;
 
 export const StyledTHRow = styled.tr`
@@ -68,7 +68,7 @@ export const StyledTRow = styled.tr`
 `;
 
 export const StyledTBody = styled.tbody`
-  font-size: 13px;
+  font-size: 18px;
   font-weight: 400;
 `;
 

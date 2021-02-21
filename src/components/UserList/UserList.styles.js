@@ -6,17 +6,18 @@ export const UserListContainer = styled.div`
 `;
 
 export const StyledAvatarImg = styled.div`
-  width: 50px;
-  height: 50px;
+  width: 80px;
+  height: 80px;
   margin-top: 5px;
 
   & img,
   & svg {
     position: relative;
     float: left;
-    width: 100%;
-    height: 100%;
+    width: 90%;
+    height: 90%;
     overflow: hidden;
-    border-radius: 100%;
+    border-radius: 50%;
+    box-shadow: 0 5px 5px rgb(0 0 0 / 25%);
   }
 `;

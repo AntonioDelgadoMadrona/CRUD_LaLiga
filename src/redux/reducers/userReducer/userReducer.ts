@@ -43,6 +43,28 @@ export default function locationReducer(state = initialState, action: any) {
       };
     case types.GET_USER_DETAILS_FAILURE:
       return { ...state, gettingUserDetails: false };
+    // DELETE AN USER BY ID
+    case types.DELETE_USER_REQUEST:
+      return { ...state, gettingUserDetails: true };
+    case types.DELETE_USER_SUCCESS:
+      return {
+        ...state,
+        gettingUserDetails: false,
+        userDetails: null,
+      };
+    case types.DELETE_USER_FAILURE:
+      return { ...state, gettingUserDetails: false };
+    // UPDATE AN USER
+    case types.UPDATE_USER_REQUEST:
+      return { ...state, gettingUserDetails: true };
+    case types.UPDATE_USER_SUCCESS:
+      return {
+        ...state,
+        gettingUserDetails: false,
+        userDetails: { ...action.payload },
+      };
+    case types.UPDATE_USER_FAILURE:
+      return { ...state, gettingUserDetails: false };
 
     default:
       return { ...state };

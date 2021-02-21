@@ -17,11 +17,11 @@
   margin-right: 20px;
 }
 .pagination__info span {
-  font-size: 16px;
+  font-size: 18px;
   margin-right: 5px;
 }
 .pagination__info strong {
-  font-size: 18px;
+  font-size: 20px;
   margin-right: 5px;
   font-weight: bold;
 }
@@ -53,27 +53,27 @@
   padding: 5px 11px;
   border-radius: 0;
   font-weight: bold;
-  font-size: 17px;
+  font-size: 20px;
   color: #0d0d1e;
 }
-.pagination.pagination__container li.active a {
+.pagination__container li.active a {
   background-color: transparent;
   pointer-events: none;
   color: #4caf50;
   border-radius: 0;
 }
-.pagination.pagination__container li a:focus {
+.pagination__container li a:focus {
   outline: none;
 }
-.pagination.pagination__container li a:hover:not(.active) {
+.pagination__container li a:hover:not(.active) {
   background-color: transparent;
   color: rgb(63, 63, 63);
 }
-.pagination.pagination__container li.disabled a:hover {
+.pagination__container li.disabled a:hover {
   color: #0d0d1e;
   opacity: 1;
 }
-.pagination .pagination li:not(.disabled) a:hover:not(.active) {
+ .pagination li:not(.disabled) a:hover:not(.active) {
   background-color: transparent;
   opacity: 0.6;
 }

@@ -3,6 +3,30 @@ import styled from 'styled-components';
 
 export const StyledUserDetails = styled.div`
     width: 100%;
+
+    & > h2 {
+        text-align: center;
+        font-size: 25px;
+    }
+
+    & > a {
+        font-size: 20px;
+        text-decoration: none;
+        display: flex;
+        align-items: flex-end;
+        width: max-content;
+        justify-content: space-between;
+        height: 30px;
+
+        :hover {
+            color: black;
+            font-size: 20.5px;
+        }
+
+        & > svg {
+            margin-right: 5px;
+        }
+    }
 `;
 
 export const ModalContent = styled.div`
@@ -17,4 +41,8 @@ export const ModalContent = styled.div`
     & > div button:first-child {
         margin-right: 20px;
     }
+`;
+
+export const StyledGoBack = styled.link`
+    outline: none;
 `;

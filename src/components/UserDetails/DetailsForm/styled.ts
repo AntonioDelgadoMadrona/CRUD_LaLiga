@@ -16,6 +16,7 @@ export const ContainerInput = styled.div`
   & > div {
     margin-bottom: 20px;
     overflow: hidden;
+    align-self: center;
   }
 `;
 
