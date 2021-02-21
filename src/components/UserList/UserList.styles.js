@@ -3,6 +3,11 @@ import styled from "styled-components";
 export const UserListContainer = styled.div`
   width: 100%;
   height: 100%;
+
+  & > h2 {
+    font-size: 25px;
+    text-align: center;
+  }
 `;
 
 export const StyledAvatarImg = styled.div`

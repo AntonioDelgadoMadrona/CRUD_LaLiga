@@ -1,15 +1,17 @@
 // DEPENDENCIES
-import React from 'react';
+import React from "react";
+
+// COMPONENTS
+import { Navbar } from "../Navbar/Navbar";
 
 // STYLED
-import { Layout as Container, Wrapper } from './Layout.styles';
+import { Layout as Container, Wrapper } from "./Layout.styles";
 
 export const Layout = React.memo((props: any) => {
-
-    return (
-        <Container>
-            {/* NAVBAR TOP */}
-            <Wrapper>{props.children}</Wrapper>
-        </Container>
-    )
+  return (
+    <Container>
+      <Navbar />
+      <Wrapper>{props.children}</Wrapper>
+    </Container>
+  );
 });

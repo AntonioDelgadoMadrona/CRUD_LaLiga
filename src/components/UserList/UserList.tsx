@@ -78,7 +78,7 @@ const UserList = React.memo<IProps>((props) => {
 
   return (
     <Container>
-      <h2>User List</h2>
+      <h2>Listado de Usuarios</h2>
       <Table
         headers={headersList}
         items={users}

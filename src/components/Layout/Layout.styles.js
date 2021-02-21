@@ -10,8 +10,8 @@ export const Layout = styled.div`
 
 export const Wrapper = styled.div`
     width: 100%;
-    height: 100vh;
+    min-height: 95vh;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 60px auto 0 auto;
     padding: 20px 0;
 `;
