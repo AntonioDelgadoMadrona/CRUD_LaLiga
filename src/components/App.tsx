@@ -6,6 +6,7 @@ import { Router, Route, Switch, Redirect } from "react-router-dom";
 import { Layout } from "./Layout/Layout";
 import UserList from "./UserList/UserList";
 import UserDetails from "./UserDetails/UserDetails";
+import Login from "./Login/Login";
 
 // UTILS
 import { history } from "../utils/history";
@@ -18,9 +19,10 @@ function App() {
     <Router history={history}>
       <Layout>
         <Switch>
+          <Route exact path="/login" component={Login} />
           <Route exact path="/user" component={UserDetails} />
           <Route exact path="/users" component={UserList} />
-          <Redirect to="/users" />
+          <Redirect to="/login" />
         </Switch>
       </Layout>
     </Router>

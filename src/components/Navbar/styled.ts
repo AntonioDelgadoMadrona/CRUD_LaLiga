@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const StyledNavbar = styled.header`
   position: fixed;
+  z-index: 100;
   top: 0;
   width: 100%;
   background: #0d0d1e;

@@ -5,13 +5,14 @@ import React from "react";
 import { Navbar } from "../Navbar/Navbar";
 
 // STYLED
-import { Layout as Container, Wrapper } from "./Layout.styles";
+import { Layout as Container, Wrapper } from "./styled";
 
 export const Layout = React.memo((props: any) => {
+  const pathname = window.location.pathname;
   return (
     <Container>
       <Navbar />
-      <Wrapper>{props.children}</Wrapper>
+      <Wrapper path={pathname}>{props.children}</Wrapper>
     </Container>
   );
 });
