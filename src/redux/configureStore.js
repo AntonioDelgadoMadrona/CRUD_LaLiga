@@ -7,6 +7,7 @@ import { routerReducer, routerMiddleware } from 'react-router-redux';
 import userReducer from './reducers/userReducer/userReducer';
 import authReducer from './reducers/authReducer/authReducer';
 import apiStatusReducer from './reducers/apiStatusReducer/apiStatusReducer';
+import alertReducer from './reducers/alertReducer/alertReducer';
 
 // MIDDLEWARES
 
@@ -28,6 +29,7 @@ export default function configureStore(initialState, browserHistory) {
         userReducer,
         authReducer,
         apiStatusReducer,
+        alertReducer,
         routing: routerReducer
     });
 
