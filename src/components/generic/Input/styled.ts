@@ -8,14 +8,13 @@ export const InputContainer = styled.div`
   display: block;
   width: auto;
   height: auto;
-  color: #0d0d1e;
 `;
 
 export const StyledLabel = styled.label`
-  color: inherit;
   padding-left: 10px;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 1.1rem;
+  color: #fff;
 `;
 
 export const StyledInput = styled.input<IExtendedProps>`
@@ -36,15 +35,15 @@ export const StyledInput = styled.input<IExtendedProps>`
     -webkit-box-shadow 0.15s ease-in-out;
   flex: 1 1 auto;
   border-radius: 5px;
-  font-size: 18px;
+  font-size: 1.1rem;
   margin: 5px 0;
 
   &:focus {
     outline: none;
   }
 
-  ${(props) =>
-    props.showError &&
+  ${({ showError }) =>
+    showError &&
     `
         border: 1px solid #ed6071;
   `}
@@ -57,7 +56,7 @@ export const StyledError = styled.div`
 
   & span {
     color: #ed6071;
-    font-size: 15px;
+    font-size: 1rem;
     font-weight: bold;
   }
 `;

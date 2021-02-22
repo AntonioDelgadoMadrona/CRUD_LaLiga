@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const StyledTable = styled.div`
   padding: 20px;
-  background-color: #fff;
+  background-color: #0C1B23;
   border-radius: 10px;
   box-shadow: 0 2px 2px rgb(0 0 0 / 10%);
   width: 100%;
@@ -30,6 +30,7 @@ export const StyledTableContainer = styled.div`
   & table {
     margin-bottom: 0;
     width: 100%;
+    border-collapse: collapse;
   }
 
   & table td {
@@ -43,8 +44,9 @@ export const StyledTableContainer = styled.div`
 `;
 
 export const StyledTHead = styled.thead`
-  color: black;
-  font-size: 20px;
+  color: #FEF6B9;
+  background-color: transparent;
+  text-transform: uppercase;
 `;
 
 export const StyledTHRow = styled.tr`
@@ -56,23 +58,23 @@ export const StyledTHRow = styled.tr`
     padding-bottom: 5px;
   }
   & th {
-    background-color: #fff;
+    background-color: transparent;
     border: none;
     text-align: center;
   }
 `;
 
 export const StyledTRow = styled.tr`
-  background-color: #f4f7ff;
+  background-color: transparent;
 
   &:nth-of-type(even) {
-    background-color: rgba(218, 226, 252, 0.5);
+    background-color: #254150;
   }
 `;
 
 export const StyledTBody = styled.tbody`
-  font-size: 18px;
   font-weight: 400;
+  color: #78B3C2;
 `;
 
 export const StyledTd = styled.td`
@@ -81,10 +83,5 @@ export const StyledTd = styled.td`
   & span {
     width: max-content;
     display: inline-block;
-  }
-
-  &.notResult {
-    font-size: 20px;
-    height: 40px;
   }
 `;

@@ -6,7 +6,6 @@ import { StyledNavbar, ImgContainer, LinksContainer } from "./styled";
 import logo from "../../images/logo_navbar.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
 
 interface IProps {
   logged: boolean;
@@ -30,9 +29,9 @@ const Navbar = React.memo<IProps>(({ logged, email, logoutAction }) => {
               <strong>{email}</strong>
             </li>
             <li>
-              <Link to="/Login" onClick={logoutAction}>
-                <FontAwesomeIcon icon={faSignOutAlt} /> Logout
-              </Link>
+              <span onClick={logoutAction}>
+                <FontAwesomeIcon icon={faSignOutAlt} /> Salir
+              </span>
             </li>
           </ul>
         )}

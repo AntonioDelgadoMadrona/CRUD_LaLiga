@@ -46,6 +46,7 @@ export function logoutAction() {
     return function (dispatch: Dispatch) {        
         dispatch(alertActions.showToastAction({ message: "¡Gracias, hasta pronto!", type: "SUCCESS"}));
         dispatch(request());
+        history.replace("/login");
     };
 
     function request() { return { type: types.LOGOUT_REQUEST } };

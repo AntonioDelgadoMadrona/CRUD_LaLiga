@@ -5,13 +5,13 @@ export const StyledNavbar = styled.header`
   z-index: 100;
   top: 0;
   width: 100%;
-  background: rgb(12, 27, 35);
+  background: #0C1B23;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 50px;
   height: 60px;
-  color: #ffff;
+  color: #FEF6B9;
   box-sizing: border-box;
 `;
 
@@ -43,13 +43,14 @@ export const LinksContainer = styled.div`
 
         & strong {
           margin-right: 30px;
-          color: rgba(218,226,252);
-          font-size: 20px;
+          font-size: 1.1rem;
+          color: #fff;
+          opacity: 0.9;
         } 
     }
 
-    & a {
-      font-size: 20px;
+    & span {
+      font-size: 1.3rem;
       text-decoration: none;
       display: flex;
       align-items: flex-end;
@@ -57,6 +58,7 @@ export const LinksContainer = styled.div`
       justify-content: space-between;
       height: 30px;
       color: inherit;
+      cursor: pointer;
 
       :hover {        
         opacity: 0.8;

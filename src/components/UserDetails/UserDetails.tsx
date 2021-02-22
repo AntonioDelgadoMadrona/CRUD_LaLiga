@@ -110,7 +110,7 @@ const UserDetails = React.memo<IProps>(
     return (
       <Container>
         <Link to="/users">
-          <FontAwesomeIcon icon={faAngleLeft} /> Atras
+          <FontAwesomeIcon icon={faAngleLeft} />
         </Link>
         <h2>Detalles del Usuario</h2>
         <div>
@@ -129,7 +129,7 @@ const UserDetails = React.memo<IProps>(
         {/* UPDATE MODAL */}
         <Modal show={modal.update} modalClosed={() => setModal({ delete: false, update: false })}>
           <ModalContent>
-            <strong>¿Estas seguro de que quiere actualizar este usuario?</strong>
+            <strong>¿Seguro que quiere actualizar este usuario?</strong>
             <div>
               <Button
                 color="danger"
@@ -157,7 +157,7 @@ const UserDetails = React.memo<IProps>(
         {/* DELETE MODAL  */}
         <Modal show={modal.delete} modalClosed={() => setModal({ delete: false, update: false })}>
           <ModalContent>
-            <strong>¿Estas seguro de que quiere eliminar este usuario?</strong>
+            <strong>¿Seguro que quiere eliminar este usuario?</strong>
             <div>
               <Button
                 color="primary"

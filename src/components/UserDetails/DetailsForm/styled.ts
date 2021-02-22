@@ -8,7 +8,7 @@ export const ContainerInput = styled.div`
   height: auto;
   min-height: 300px;
 
-  background-color: #fff;
+  background-color: #0C1B23;
   padding: 20px;
   border-radius: 10px;
   justify-content: space-between;
@@ -50,7 +50,7 @@ export const ContainerButton = styled.div`
   justify-content: center;
   margin: 0 auto;
 
-  background-color: #fff;
+  background-color: #0C1B23;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 2px 2px rgb(0 0 0 / 10%);

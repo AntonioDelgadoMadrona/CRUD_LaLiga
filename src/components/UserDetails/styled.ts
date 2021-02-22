@@ -9,25 +9,34 @@ export const StyledUserDetails = styled.div`
 
     & > h2 {
         text-align: center;
-        font-size: 25px;
+        font-size: 1.5rem;
+        text-transform: uppercase;
     }
 
     & > a {
-        font-size: 20px;
+        position: absolute;
         text-decoration: none;
         display: flex;
         align-items: flex-end;
         width: max-content;
         justify-content: space-between;
-        height: 30px;
+        background-color: #0C1B23;
+        padding: 5px;
+        border-radius: 10px;  
+        width: 50px;
+        display: flex;
+        align-items: center; 
+        justify-content: center;    
+        box-sizing: border-box;
 
-        :hover {
-            color: black;
-            font-size: 20.5px;
+        &:hover > svg {
+            opacity: 0.8;
         }
-
+        
         & > svg {
+            font-size: 1.5rem;
             margin-right: 5px;
+            color: #FEF6B9;
         }
     }
 `;

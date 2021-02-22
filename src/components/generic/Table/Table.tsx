@@ -87,15 +87,6 @@ const Table = React.memo<IProps>((props) => {
                   </StyledTRow>
                 );
               })}
-
-            {/* ----- NO ITEMS MESSAGE ----- */}
-            {items && items.length === 0 && (
-              <StyledTRow>
-                <StyledTd className="notResult" colSpan={headers.length}>
-                  <span>No hay usuarios que mostrar</span>
-                </StyledTd>
-              </StyledTRow>
-            )}
           </StyledTBody>
         </table>
       </StyledTableContainer>

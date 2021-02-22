@@ -4,8 +4,8 @@ export const PaginationContainer = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  color: black;
-  background-color: #fff;
+  color: #FEF6B9;
+  background-color: transparent;
   padding: 20px 0 10px 0;
   height: 35px;
 `;
@@ -19,11 +19,10 @@ export const PaginationInfo = styled.div`
     margin-right: 20px;
   }
   & span {
-    font-size: 18px;
     margin-right: 5px;
   }
   & strong {
-    font-size: 20px;
+    font-size: 1.3rem;
     margin-right: 5px;
     font-weight: bold;
   }
@@ -49,8 +48,8 @@ export const PaginationPager = styled.div`
 
         & > span {
           pointer-events: none;
-          color: #4caf50;
           opacity: 1;
+          text-shadow: 0px 0px 10px #FEF6B9;
         }
       }
 
@@ -62,8 +61,8 @@ export const PaginationPager = styled.div`
       & > span,
       & > svg {
         font-weight: bold;
-        font-size: 22px;
-        color: #0d0d1e;
+        font-size: 1.3rem;
+        color: #FEF6B9;
 
         &:hover {
           opacity: 0.5;

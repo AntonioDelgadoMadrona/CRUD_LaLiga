@@ -20,10 +20,10 @@ interface IProps {
   logged: boolean;
   toast: IToast;
   email: string;
-  logoutAction: Function;
+  logoutAction: any;
 }
 
-const Layout = React.memo<IProps>(({ isLoading, logged, toast, email, children }) => {
+const Layout = React.memo<IProps>(({ isLoading, logged, toast, email, children, logoutAction }) => {
   const { pathname } = useLocation();
 
   // FIX THE BODY FOR NOT SCROLL

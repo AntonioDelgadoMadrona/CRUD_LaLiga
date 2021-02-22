@@ -61,7 +61,7 @@ export const StyledForm = styled.div`
     position: relative;
     height: 100vh;
     width: 100%;
-    background: rgb(12, 27, 35);;
+    background: #0C1B23;
     z-index: 3;
     box-shadow: 0 0 100px #0d0d1e;
 `;

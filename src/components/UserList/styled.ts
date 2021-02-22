@@ -5,8 +5,9 @@ export const UserListContainer = styled.div`
   height: 100%;
 
   & > h2 {
-    font-size: 25px;
+    font-size: 1.5rem;
     text-align: center;
+    text-transform: uppercase;
   }
 `;
 

@@ -24,32 +24,30 @@ export const Button = styled.button<IExtendedProps>`
   }
 
   /* SECONDARY COLOR */
-  ${(props) =>
-    props.color &&
-    props.color === "secondary" &&
+  ${({ color }) =>
+    color === "secondary" &&
     `
-    background-color: #5456fb;
-    border: 1px solid #5456fb;
-    color: white;
+    background-color: #78B3C2;
+    border: 1px solid #78B3C2;
+    color: #0C1B23;
     cursor: pointer;
 
     &:hover {
-      background-color: #6668f7;
-      border: 1px solid #6668f7;
+      background-color: #5090a0;
+      border: 1px solid #5090a0;
     }
 
     &:active,
     &:focus {
-      background-color: #3d40fa;
+      background-color: #3c7280;
       outline: none;
-      border: 1px solid #3d40fa;
+      border: 1px solid #3c7280;
     }
   `}
 
   /* DANGER COLOR */
-  ${(props) =>
-    props.color &&
-    props.color === "danger" &&
+  ${({ color }) =>
+    color === "danger" &&
     `
     background-color: #fc4561;
     border: 1px solid #fc4561;
@@ -76,11 +74,10 @@ export const Button = styled.button<IExtendedProps>`
   line-height: 100%;
   padding: 5px 10px;
   font-size: 0.7rem;
-  font-weight: 400;
+  font-weight: bold;
 
-  ${(props) =>
-    props.size &&
-    props.size === "medium" &&
+  ${({ size }) =>
+    size === "medium" &&
     `
         border-radius: 5px;
         transition: 0.5s;
@@ -88,12 +85,11 @@ export const Button = styled.button<IExtendedProps>`
         line-height: 100%;
         padding: 6px 12px;
         font-size: 1rem;
-        font-weight: 400;
+        font-weight: bold;
   `}
 
-  ${(props) =>
-    props.size &&
-    props.size === "large" &&
+  ${({ size }) =>
+    size === "large" &&
     `
         border-radius: 5px;
         transition: 0.5s;
@@ -101,11 +97,11 @@ export const Button = styled.button<IExtendedProps>`
         line-height: 100%;
         padding: 12px 18px;
         font-size: 1rem;
-        font-weight: 400;
+        font-weight: bold;
   `}
 
-  ${(props) =>
-    props.disabled &&
+  ${({ disabled }) =>
+    disabled &&
     `
         pointer-events: none;
         background-color: #929293;
