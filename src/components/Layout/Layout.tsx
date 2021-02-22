@@ -13,22 +13,29 @@ import { Toast } from "../generic/Toast/Toast";
 
 // STYLED
 import { Layout as Container, Wrapper } from "./styled";
+import { IToast } from "../../interfaces/IToast";
 
-const Layout = React.memo((props: any) => {
+interface IProps {
+  isLoading: boolean;
+  logged: boolean;
+  toast: IToast;
+  email: string;
+  logoutAction: Function;
+}
+
+const Layout = React.memo<IProps>(({ isLoading, logged, toast, email, children }) => {
   const { pathname } = useLocation();
 
   // FIX THE BODY FOR NOT SCROLL
-  if (props.isLoading) document.getElementsByTagName("body")[0].style.overflowY = "hidden";
+  if (isLoading) document.getElementsByTagName("body")[0].style.overflowY = "hidden";
   else document.getElementsByTagName("body")[0].style.overflow = "auto";
 
   return (
     <Container>
-      {props.logged && (
-        <Navbar logged={props.logged} email={props.email} logoutAction={props.logoutAction} />
-      )}
-      {props.isLoading && <FullScreenSpinner />}
-      {props.toast && <Toast toast={props.toast} />}
-      <Wrapper path={pathname}>{props.children}</Wrapper>
+      {logged && <Navbar logged={logged} email={email} logoutAction={logoutAction} />}
+      {isLoading && <FullScreenSpinner />}
+      {toast && <Toast toast={toast} />}
+      <Wrapper path={pathname}>{children}</Wrapper>
     </Container>
   );
 });

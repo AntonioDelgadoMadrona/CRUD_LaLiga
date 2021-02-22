@@ -5,7 +5,7 @@ import React from "react";
 import { StyledNavbar, ImgContainer, LinksContainer } from "./styled";
 import logo from "../../images/logo_navbar.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSignInAlt, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
 interface IProps {

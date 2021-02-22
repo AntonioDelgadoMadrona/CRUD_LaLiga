@@ -19,9 +19,8 @@ export const Wrapper = styled.div<IExtendedProps>`
   padding: 5px 0;
   overflow: hidden;
 
-  ${(props) =>
-    props.path &&
-    props.path.toLowerCase() === "/login" &&
+  ${({ path }) =>
+    path?.toLowerCase() === "/login" &&
     `
     width: 100%;
     min-height: 95vh;

@@ -20,20 +20,22 @@ import { history } from "../utils/history";
 // STYLE
 import "./App.scss";
 
-const App = (props: any) => {
-  return (
-    <Router history={history}>
-      <Layout>
-        <Switch>
-          {!props.logged && <Route exact path="/login" component={Login} />}
-          <PrivateRoute exact path="/user" component={UserDetails} logged={props.logged} />
-          <PrivateRoute exact path="/users" component={UserList} logged={props.logged} />
-          <Redirect to={props.logged ? "/users" : "/login"} />
-        </Switch>
-      </Layout>
-    </Router>
-  );
-};
+interface IProps {
+  logged: boolean;
+}
+
+const App: React.FC<IProps> = ({ logged }) => (
+  <Router history={history}>
+    <Layout>
+      <Switch>
+        {!logged && <Route exact path="/login" component={Login} />}
+        <PrivateRoute exact path="/user" component={UserDetails} logged={logged} />
+        <PrivateRoute exact path="/users" component={UserList} logged={logged} />
+        <Redirect to={logged ? "/users" : "/login"} />
+      </Switch>
+    </Layout>
+  </Router>
+);
 
 const mapStateToProps = (state: any) => {
   const { authReducer } = state;
@@ -42,6 +44,4 @@ const mapStateToProps = (state: any) => {
   };
 };
 
-export { App };
-
-export default connect(mapStateToProps, null)(App);
+export default connect<IProps>(mapStateToProps)(App);
