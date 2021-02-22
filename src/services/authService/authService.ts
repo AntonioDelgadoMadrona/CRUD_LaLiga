@@ -11,5 +11,5 @@ export async function login(user: ILoginUser) {
         body: JSON.stringify(user)    
     };
 
-    return await fetch(`https://reqres.in/api/login?delay=2`,requestOptions).then(handleResponse, handleError);
+    return await fetch(`https://reqres.in/api/login?delay=1`,requestOptions).then(handleResponse, handleError);
 };

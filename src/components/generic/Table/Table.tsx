@@ -100,6 +100,7 @@ const Table = React.memo<IProps>((props) => {
         </table>
       </StyledTableContainer>
 
+      {/* ---- PAGINATION ---- */}
       {page && (
         <Pagination
           itemsPerPage={page.itemsPerPage}

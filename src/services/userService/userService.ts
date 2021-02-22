@@ -12,7 +12,7 @@ export async function getUserList(data: any) {
         method: 'GET',
     };
 
-    return await fetch(`https://reqres.in/api/users?delay=2&page=${data.currentPage}`, requestOptions).then(handleResponse, handleError);
+    return await fetch(`https://reqres.in/api/users?delay=1&page=${data.currentPage}`, requestOptions).then(handleResponse, handleError);
 };
 
 // GET AN USER BY ID
@@ -22,7 +22,7 @@ export async function getUserDetails(id: string) {
         method: 'GET',
     };
 
-    return await fetch(`https://reqres.in/api/users/${id}?delay=2`, requestOptions).then(handleResponse, handleError);
+    return await fetch(`https://reqres.in/api/users/${id}?delay=1`, requestOptions).then(handleResponse, handleError);
 };
 
 // DELETE AN USER BY ID
@@ -32,7 +32,7 @@ export async function deleteUser(id: string) {
         method: 'DELETE',
     };
 
-    return await fetch(`https://reqres.in/api/users/${id}?delay=2`, requestOptions).then(handleResponse, handleError);
+    return await fetch(`https://reqres.in/api/users/${id}?delay=1`, requestOptions).then(handleResponse, handleError);
 };
 
 // UPDATE AN USER
@@ -43,5 +43,5 @@ export async function updateUser(user: IUser) {
         body: JSON.stringify(user)
     };
 
-    return await fetch(`https://reqres.in/api/users/${user.id}?delay=2`, requestOptions).then(handleResponse, handleError);
+    return await fetch(`https://reqres.in/api/users/${user.id}?delay=1`, requestOptions).then(handleResponse, handleError);
 };
