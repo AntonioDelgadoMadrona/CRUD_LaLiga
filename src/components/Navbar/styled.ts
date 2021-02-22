@@ -1,3 +1,4 @@
+import { device } from "./../styled";
 import styled from "styled-components";
 
 export const StyledNavbar = styled.header`
@@ -5,13 +6,13 @@ export const StyledNavbar = styled.header`
   z-index: 100;
   top: 0;
   width: 100%;
-  background: #0C1B23;
+  background: #0c1b23;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 50px;
-  height: 60px;
-  color: #FEF6B9;
+  height: 70px;
+  color: #fef6b9;
   box-sizing: border-box;
 `;
 
@@ -39,14 +40,18 @@ export const LinksContainer = styled.div`
     align-items: flex-end;
 
     & > li {
-        margin-right: 10px;
+      margin-right: 10px;
 
-        & strong {
-          margin-right: 30px;
-          font-size: 1.1rem;
-          color: #fff;
-          opacity: 0.9;
-        } 
+      & strong {
+        margin-right: 30px;
+        font-size: 1.1rem;
+        color: #fff;
+        opacity: 0.9;
+
+        @media ${device.mobileL} {
+          display: none;
+        }
+      }
     }
 
     & span {
@@ -60,7 +65,7 @@ export const LinksContainer = styled.div`
       color: inherit;
       cursor: pointer;
 
-      :hover {        
+      :hover {
         opacity: 0.8;
       }
 

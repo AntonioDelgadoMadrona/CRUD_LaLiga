@@ -1,9 +1,10 @@
+import { device } from "./../../styled";
 // DEPENDENCIES
 import styled from "styled-components";
 
 export const StyledTable = styled.div`
   padding: 20px;
-  background-color: #0C1B23;
+  background-color: #0c1b23;
   border-radius: 10px;
   box-shadow: 0 2px 2px rgb(0 0 0 / 10%);
   width: 100%;
@@ -24,7 +25,7 @@ export const StyledTableContainer = styled.div`
     background: #e7ecff;
   }
   &::-webkit-scrollbar-thumb {
-    background-color: #0cbd57;
+    background-color: #78b3c2;
   }
 
   & table {
@@ -35,6 +36,10 @@ export const StyledTableContainer = styled.div`
 
   & table td {
     border-top: none;
+
+    @media ${device.tabletM} {
+      min-width: 120px;
+    }
   }
 
   & .table th,
@@ -44,7 +49,7 @@ export const StyledTableContainer = styled.div`
 `;
 
 export const StyledTHead = styled.thead`
-  color: #FEF6B9;
+  color: #fef6b9;
   background-color: transparent;
   text-transform: uppercase;
 `;
@@ -74,7 +79,7 @@ export const StyledTRow = styled.tr`
 
 export const StyledTBody = styled.tbody`
   font-weight: 400;
-  color: #78B3C2;
+  color: #78b3c2;
 `;
 
 export const StyledTd = styled.td`

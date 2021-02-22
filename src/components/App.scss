@@ -1,3 +1,7 @@
+html {
+  font-size: 16px;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -5,7 +9,6 @@ body {
   width: 100%;
   background-color: #f4f7ff;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  font-size: 16px;
 }
 
 body::after {
@@ -19,4 +22,14 @@ body::after {
   background-size: cover;
   opacity: 1;
   z-index: -1;
+}
+
+@media screen and (max-width: 574px) {
+  html {
+    font-size: 13px;
+  }
+
+  body::after {
+    background: none;
+  }
 }

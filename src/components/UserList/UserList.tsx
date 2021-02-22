@@ -21,7 +21,7 @@ interface IProps {
   userPagination: {};
 }
 
-const headersList = ["Avatar", "Nombre", "Apellido", "Email"];
+const headersList = ["Foto", "Nombre", "Apellido", "Email"];
 
 const UserList = React.memo<IProps>((props) => {
   const { getUserListAction, userList, userPagination } = props;

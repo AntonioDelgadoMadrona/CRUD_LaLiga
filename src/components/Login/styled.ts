@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { device } from "../styled";
 
 export const LoginContainer = styled.div`
   display: grid;
@@ -9,6 +10,10 @@ export const LoginContainer = styled.div`
   & > div {
     align-self: center;
     justify-self: center;
+  }
+
+  @media ${device.tabletL} {
+    grid-template-columns: auto;
   }
 `;
 
@@ -31,7 +36,7 @@ export const StyledImgContainer = styled.div`
   justify-content: center;
 
   & > img {
-    position: absolute;    
+    position: absolute;
     height: 100%;
     width: auto;
     opacity: 0.3;
@@ -42,6 +47,10 @@ export const StyledImgContainer = styled.div`
   & > div {
     text-align: center;
     z-index: 2;
+  }
+
+  @media ${device.tabletL} {
+    display: none;
   }
 `;
 
@@ -58,10 +67,10 @@ export const LogoContainer = styled.div`
 `;
 
 export const StyledForm = styled.div`
-    position: relative;
-    height: 100vh;
-    width: 100%;
-    background: #0C1B23;
-    z-index: 3;
-    box-shadow: 0 0 100px #0d0d1e;
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  background: #0c1b23;
+  z-index: 3;
+  box-shadow: 0 0 100px #0d0d1e;
 `;

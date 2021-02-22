@@ -1,3 +1,4 @@
+import { device } from "./../../styled";
 import styled from "styled-components";
 
 export const ContainerInput = styled.div`
@@ -8,7 +9,7 @@ export const ContainerInput = styled.div`
   height: auto;
   min-height: 300px;
 
-  background-color: #0C1B23;
+  background-color: #0c1b23;
   padding: 20px;
   border-radius: 10px;
   justify-content: space-between;
@@ -16,10 +17,24 @@ export const ContainerInput = styled.div`
   margin-bottom: 30px;
   box-sizing: border-box;
 
+  @media ${device.mobileL} {
+    grid-template-columns: 100%;
+    grid-template-rows: repeat(4, auto);
+  }
+
   & > div {
     margin-bottom: 20px;
     overflow: hidden;
     align-self: center;
+    justify-self: center;
+
+    @media ${device.mobileL} {
+      margin-bottom: 12px;
+
+      & input {
+        width: 200px;
+      }
+    }
   }
 `;
 
@@ -50,13 +65,12 @@ export const ContainerButton = styled.div`
   justify-content: center;
   margin: 0 auto;
 
-  background-color: #0C1B23;
+  background-color: #0c1b23;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 2px 2px rgb(0 0 0 / 10%);
 
   & > button:first-child {
-    margin-right: 20px
-    
+    margin-right: 20px;
   }
 `;
