@@ -189,7 +189,7 @@ const mapStateToProps = (state: any, ownProps: any) => {
   const urlFilters = queryString.decode(ownProps.location.search.replace("?", ""));
   return {
     userId: urlFilters.id,
-    userDetails: userReducer.userDetails
+    userDetails: userReducer.userDetails,
   };
 };
 

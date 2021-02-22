@@ -25,9 +25,7 @@ interface IProps {
   handlePage: any;
 }
 
-const Table = React.memo<IProps>((props) => {
-  const { headers, items, handleButtons, page, handlePage } = props;
-
+const Table = React.memo<IProps>(({ headers, items, handleButtons, page, handlePage }) => {
   return (
     <StyledTable>
       <StyledTableContainer>

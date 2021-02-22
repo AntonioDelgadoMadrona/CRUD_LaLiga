@@ -27,7 +27,6 @@ export const StyledImgContainer = styled.div`
     #1ce090 0%,
     #0cbd57 100%
   ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1ce090', endColorstr='#0cbd57',GradientType=0 ); /* IE6-9 */
   width: 100%;
   height: 100%;
 

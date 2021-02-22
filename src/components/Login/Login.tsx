@@ -1,11 +1,9 @@
 // DEPENDENCES
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
+import React, { useState } from "react";
 
 // REDUX
 import { connect } from "react-redux";
-import { loginAction } from '../../redux/actions/authActions/authActions';
+import { loginAction } from "../../redux/actions/authActions/authActions";
 
 // COMPONENTS
 import { LoginForm } from "./LoginForm/LoginForm";
@@ -13,6 +11,7 @@ import { LoginForm } from "./LoginForm/LoginForm";
 // STYLES AND UTILS
 import * as validations from "../../utils/validations";
 
+// IMAGES
 import fullImg from "../../images/heroPL.jpg";
 import logo from "../../images/Spanish_La_Liga_logo.png";
 
@@ -26,10 +25,9 @@ import {
 
 interface IProps {
   loginAction: any;
-  loggingIn: boolean;
 }
 
-const Login = React.memo<IProps>(({ loginAction, loggingIn }) => {
+const Login = React.memo<IProps>(({ loginAction }) => {
   const initialState = {
     email: "",
     password: "",
@@ -38,6 +36,7 @@ const Login = React.memo<IProps>(({ loginAction, loggingIn }) => {
   const [user, setUser] = useState(initialState);
   const [errors, setErrors] = useState({});
 
+  // CHECKS IF THE FORM IS VALID
   const formIsValid = () => {
     const { email, password } = user;
     const errors: any = {};
@@ -53,6 +52,7 @@ const Login = React.memo<IProps>(({ loginAction, loggingIn }) => {
     return Object.keys(errors).length === 0;
   };
 
+  // CHANGE EVERY PROPERTY BY NAME
   const handleChange = (event: any) => {
     const { name, value } = event.target;
     setUser((prevUser) => ({
@@ -80,25 +80,23 @@ const Login = React.memo<IProps>(({ loginAction, loggingIn }) => {
       </StyledImgContainer>
 
       <StyledForm>
-        <LoginForm user={user} handleChange={handleChange} errors={errors} isLoading={loggingIn} handleClick={handleClick} />
+        <LoginForm
+          user={user}
+          handleChange={handleChange}
+          errors={errors}
+          handleClick={handleClick}
+        />
       </StyledForm>
     </Container>
   );
 });
 
-const mapStateToProps = (state: any) => {
-    const { authReducer } = state;
-  return {
-    loggingIn: '',
-  };
-};
-
 const mapDispatchToProps = {
-    loginAction,
+  loginAction,
 };
 
 export { Login };
 
-const LoginContainer = connect(null, mapDispatchToProps)(Login);
+const LoginContainer = connect<IProps>(null, mapDispatchToProps)(Login);
 
 export default LoginContainer;

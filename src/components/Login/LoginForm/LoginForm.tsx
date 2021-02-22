@@ -1,6 +1,5 @@
 // DEPENDENCIES
 import React from "react";
-import { Link } from "react-router-dom";
 
 // COMPONENTS
 import { Input } from "../../generic/Input/Input";
@@ -14,11 +13,10 @@ interface IProps {
   user: any;
   handleChange: Function;
   errors: any;
-  isLoading: boolean;
   handleClick: any;
 }
 
-const LoginForm = React.memo<IProps>(({ user, handleChange, errors, isLoading, handleClick }) => {
+const LoginForm = React.memo<IProps>(({ user, handleChange, errors, handleClick }) => {
   return (
     <FormContainer>
       <div>
@@ -31,7 +29,7 @@ const LoginForm = React.memo<IProps>(({ user, handleChange, errors, isLoading, h
           value={user.email}
           onChange={handleChange}
           error={errors.email}
-          placeholder="george.bluth@reqres.in"
+          placeholder=""
           disabled={false}
         />
         <Input
@@ -44,14 +42,8 @@ const LoginForm = React.memo<IProps>(({ user, handleChange, errors, isLoading, h
           error={errors.password}
           disabled={false}
         />
-        <Button
-          color="primary"
-          size="large"
-          outline={false}
-          disabled={isLoading}
-          onClick={handleClick}
-        >
-          {isLoading ? "Iniciando..." : "Iniciar Sesión"}
+        <Button color="primary" size="large" outline={false} onClick={handleClick}>
+          Iniciar Sesión
         </Button>
       </div>
     </FormContainer>

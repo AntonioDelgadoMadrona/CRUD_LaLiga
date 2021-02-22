@@ -23,9 +23,7 @@ interface IProps {
 
 const headersList = ["Foto", "Nombre", "Apellido", "Email"];
 
-const UserList = React.memo<IProps>((props) => {
-  const { getUserListAction, userList, userPagination } = props;
-
+const UserList = React.memo<IProps>(({ getUserListAction, userList, userPagination }) => {
   const initialState = {
     currentPage: 1,
   };

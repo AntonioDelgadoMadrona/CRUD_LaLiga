@@ -1,8 +1,6 @@
 // DEPENDENCIES
 import React from "react";
 import { Router, Route, Switch, Redirect } from "react-router-dom";
-
-// REDUX
 import { connect } from "react-redux";
 
 // COMPONENTS

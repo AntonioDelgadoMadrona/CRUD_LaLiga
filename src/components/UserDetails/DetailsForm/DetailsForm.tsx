@@ -69,12 +69,7 @@ const DetailsForm = React.memo<IProps>(({ user, errors, handleClick, handleChang
           Actualizar
         </Button>
 
-        <Button
-          color="danger"
-          size="medium"
-          onClick={() => handleClick("delete")}
-          outline={false}
-        >
+        <Button color="danger" size="medium" onClick={() => handleClick("delete")} outline={false}>
           Eliminar
         </Button>
       </ContainerButton>

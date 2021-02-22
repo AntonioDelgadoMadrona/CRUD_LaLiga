@@ -5,7 +5,7 @@ interface IExtendedProps {
 }
 
 export const StyledModal = styled.div<IExtendedProps>`
-  display: ${(props) => (props.show ? "block" : "none")}; /* Hidden by default */
+  display: ${({ show }) => (show ? "block" : "none")}; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 50; /* Sit on top */
   padding-top: 200px;
@@ -44,6 +44,6 @@ export const ModalClose = styled.div`
 `;
 
 export const ModalBody = styled.div`
-    padding: 20px 0;
-    text-align: center;
+  padding: 20px 0;
+  text-align: center;
 `;

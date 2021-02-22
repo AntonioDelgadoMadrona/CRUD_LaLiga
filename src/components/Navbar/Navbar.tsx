@@ -1,8 +1,10 @@
 // DEPENDENCIES
 import React from "react";
 
-// STYLEd
+// STYLED
 import { StyledNavbar, ImgContainer, LinksContainer } from "./styled";
+
+// IMAGES
 import logo from "../../images/logo_navbar.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
@@ -16,12 +18,10 @@ interface IProps {
 const Navbar = React.memo<IProps>(({ logged, email, logoutAction }) => {
   return (
     <StyledNavbar>
-      {/* LOGO */}
       <ImgContainer>
         <img src={logo} alt="laligalogo" />
       </ImgContainer>
 
-      {/* LINKS */}
       <LinksContainer>
         {logged && (
           <ul>

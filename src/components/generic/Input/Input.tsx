@@ -1,8 +1,5 @@
 // DEPENDENCIES
-import React, { useState } from "react";
-
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import React from "react";
 
 // STYLED
 import { InputContainer, StyledInput, StyledLabel, StyledError } from "./styled";
@@ -18,28 +15,27 @@ interface IProps {
   disabled: boolean;
 }
 
-const Input = React.memo<IProps>((props) => {
-  const { type, name, label, onChange, placeholder, value, error, disabled } = props;
+const Input = React.memo<IProps>(
+  ({ type, name, label, onChange, placeholder, value, error, disabled }) => {
+    return (
+      <InputContainer>
+        {label && <StyledLabel htmlFor={name}>{label}</StyledLabel>}
 
-  return (
-    <InputContainer>
-      {label && <StyledLabel htmlFor={name}>{label}</StyledLabel>}
+        <StyledInput
+          type={type}
+          id={name}
+          name={name}
+          placeholder={placeholder}
+          value={value}
+          onChange={onChange}
+          disabled={disabled}
+          showError={error}
+        />
 
-      <StyledInput
-        type={type}
-        id={name}
-        name={name}
-        placeholder={placeholder}
-        value={value}
-        onChange={onChange}
-        disabled={disabled}
-        showError={error}
-      />
-
-      <StyledError>{error && <span>{error}</span>}</StyledError>
-
-    </InputContainer>
-  );
-});
+        <StyledError>{error && <span>{error}</span>}</StyledError>
+      </InputContainer>
+    );
+  }
+);
 
 export { Input };

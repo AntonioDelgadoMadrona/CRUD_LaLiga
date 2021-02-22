@@ -42,6 +42,4 @@ export const Wrapper = styled.div<IExtendedProps>`
       padding-bottom: 0;
     }
   `}
-
-
 `;
