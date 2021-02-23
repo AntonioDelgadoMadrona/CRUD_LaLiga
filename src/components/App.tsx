@@ -18,21 +18,23 @@ import { history } from "../utils/history";
 // STYLE
 import "./App.scss";
 
-interface IProps {
+export interface IProps {
   logged: boolean;
 }
 
 const App: React.FC<IProps> = ({ logged }) => (
-  <Router history={history}>
-    <Layout>
-      <Switch>
-        {!logged && <Route exact path="/login" component={Login} />}
-        <PrivateRoute exact path="/user" component={UserDetails} logged={logged} />
-        <PrivateRoute exact path="/users" component={UserList} logged={logged} />
-        <Redirect to={logged ? "/users" : "/login"} />
-      </Switch>
-    </Layout>
-  </Router>
+  <div data-testid="app-component">
+    <Router history={history}>
+      <Layout>
+        <Switch>
+          {!logged && <Route exact path="/login" component={Login} />}
+          <PrivateRoute exact path="/user" component={UserDetails} logged={logged} />
+          <PrivateRoute exact path="/users" component={UserList} logged={logged} />
+          <Redirect to={logged ? "/users" : "/login"} />
+        </Switch>
+      </Layout>
+    </Router>
+  </div>
 );
 
 const mapStateToProps = (state: any) => {
@@ -41,5 +43,7 @@ const mapStateToProps = (state: any) => {
     logged: authReducer.logged,
   };
 };
+
+export { App };
 
 export default connect<IProps>(mapStateToProps)(App);
