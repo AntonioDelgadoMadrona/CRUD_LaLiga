@@ -10,6 +10,7 @@ export async function getUserList(data: any) {
 
     const requestOptions = {
         method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
     };
 
     return await fetch(`https://reqres.in/api/users?delay=1&page=${data.currentPage}`, requestOptions).then(handleResponse, handleError);
@@ -20,6 +21,7 @@ export async function getUserDetails(id: string) {
 
     const requestOptions = {
         method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
     };
 
     return await fetch(`https://reqres.in/api/users/${id}?delay=1`, requestOptions).then(handleResponse, handleError);
@@ -30,6 +32,7 @@ export async function deleteUser(id: string) {
 
     const requestOptions = {
         method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' }
     };
 
     return await fetch(`https://reqres.in/api/users/${id}?delay=1`, requestOptions).then(handleResponse, handleError);
@@ -40,7 +43,8 @@ export async function updateUser(user: IUser) {
 
     const requestOptions = {
         method: 'PUT',
-        body: JSON.stringify(user)
+        body: JSON.stringify(user),
+        headers: { 'Content-Type': 'application/json' }
     };
 
     return await fetch(`https://reqres.in/api/users/${user.id}?delay=1`, requestOptions).then(handleResponse, handleError);

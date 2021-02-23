@@ -29,7 +29,7 @@ const LoginForm = React.memo<IProps>(({ user, handleChange, errors, handleClick 
           value={user.email}
           onChange={handleChange}
           error={errors.email}
-          placeholder=""
+          placeholder="charles.morris@reqres.in"
           disabled={false}
         />
         <Input
