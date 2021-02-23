@@ -42,7 +42,8 @@ const Login = React.memo<IProps>(({ loginAction }) => {
     const errors: any = {};
 
     if (!email) errors.email = "Introduce un email";
-    else if (!validations.validateEmailAddress(email)) errors.email = "Introduce un email válido";
+    else if (!validations.validateEmailAddress(email))
+      errors.email = "Introduce un email válido";
 
     if (!password) errors.password = "Introduce una contraseña";
     else if (password.length < 5) errors.password = "Mínimo 5 caracteres";

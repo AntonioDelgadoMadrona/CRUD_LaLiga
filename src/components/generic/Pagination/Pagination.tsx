@@ -2,7 +2,11 @@
 import React from "react";
 
 // STYLED
-import { PaginationContainer as Container, PaginationInfo, PaginationPager } from "./styled";
+import {
+  PaginationContainer as Container,
+  PaginationInfo,
+  PaginationPager,
+} from "./styled";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 

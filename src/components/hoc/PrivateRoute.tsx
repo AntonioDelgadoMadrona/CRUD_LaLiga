@@ -8,15 +8,21 @@ interface IProps {
   exact: boolean;
 }
 
-const PrivateRoute = React.memo<IProps>(({ component: Component, logged, ...rest }) => {
-  return (
-    <Route
-      {...rest}
-      render={(props) =>
-        logged ? <Component {...props} /> : <Redirect to={{ pathname: "/Login" }} />
-      }
-    ></Route>
-  );
-});
+const PrivateRoute = React.memo<IProps>(
+  ({ component: Component, logged, ...rest }) => {
+    return (
+      <Route
+        {...rest}
+        render={(props) =>
+          logged ? (
+            <Component {...props} />
+          ) : (
+            <Redirect to={{ pathname: "/Login" }} />
+          )
+        }
+      ></Route>
+    );
+  }
+);
 
 export { PrivateRoute };

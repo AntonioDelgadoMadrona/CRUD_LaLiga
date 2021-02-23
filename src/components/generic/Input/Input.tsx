@@ -2,7 +2,12 @@
 import React from "react";
 
 // STYLED
-import { InputContainer, StyledInput, StyledLabel, StyledError } from "./styled";
+import {
+  InputContainer,
+  StyledInput,
+  StyledLabel,
+  StyledError,
+} from "./styled";
 
 interface IProps {
   type: "text" | "password" | "email";

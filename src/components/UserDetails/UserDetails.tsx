@@ -79,7 +79,8 @@ const UserDetails = React.memo<IProps>(
       if (handler === "update") {
         if (!validateForm()) return;
         setModal({ update: true, delete: false });
-      } else if (handler === "delete") setModal({ update: false, delete: true });
+      } else if (handler === "delete")
+        setModal({ update: false, delete: true });
     };
 
     // CHECKS THE DIFFERENT INPUTS
@@ -93,7 +94,8 @@ const UserDetails = React.memo<IProps>(
 
       if (!lastName) errors.lastName = "No puede estar vacío";
       else if (lastName.length < 3) errors.lastName = "Mínimo 3 caracteres";
-      else if (!validateName(lastName)) errors.lastName = "Apellido/s no válido";
+      else if (!validateName(lastName))
+        errors.lastName = "Apellido/s no válido";
 
       if (!email) errors.email = "No puede estar vacío";
       else if (!validateEmailAddress(email)) errors.email = "Email no válido";
@@ -127,7 +129,10 @@ const UserDetails = React.memo<IProps>(
         </div>
 
         {/* UPDATE MODAL */}
-        <Modal show={modal.update} modalClosed={() => setModal({ delete: false, update: false })}>
+        <Modal
+          show={modal.update}
+          modalClosed={() => setModal({ delete: false, update: false })}
+        >
           <ModalContent>
             <strong>¿Seguro que quiere actualizar este usuario?</strong>
             <div>
@@ -145,7 +150,9 @@ const UserDetails = React.memo<IProps>(
                 size="medium"
                 outline={false}
                 onClick={() =>
-                  updateUserAction(user, () => setModal({ delete: false, update: false }))
+                  updateUserAction(user, () =>
+                    setModal({ delete: false, update: false })
+                  )
                 }
               >
                 Actualizar
@@ -155,7 +162,10 @@ const UserDetails = React.memo<IProps>(
         </Modal>
 
         {/* DELETE MODAL  */}
-        <Modal show={modal.delete} modalClosed={() => setModal({ delete: false, update: false })}>
+        <Modal
+          show={modal.delete}
+          modalClosed={() => setModal({ delete: false, update: false })}
+        >
           <ModalContent>
             <strong>¿Seguro que quiere eliminar este usuario?</strong>
             <div>
@@ -186,7 +196,9 @@ const UserDetails = React.memo<IProps>(
 
 const mapStateToProps = (state: any, ownProps: any) => {
   const { userReducer } = state;
-  const urlFilters = queryString.decode(ownProps.location.search.replace("?", ""));
+  const urlFilters = queryString.decode(
+    ownProps.location.search.replace("?", "")
+  );
   return {
     userId: urlFilters.id,
     userDetails: userReducer.userDetails,
@@ -201,6 +213,9 @@ const mapDispatchToProps = {
 
 export { UserDetails };
 
-const UserDetailsContainer = connect(mapStateToProps, mapDispatchToProps)(UserDetails);
+const UserDetailsContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UserDetails);
 
 export default UserDetailsContainer;

@@ -23,22 +23,27 @@ interface IProps {
   logoutAction: any;
 }
 
-const Layout = React.memo<IProps>(({ isLoading, logged, toast, email, children, logoutAction }) => {
-  const { pathname } = useLocation();
+const Layout = React.memo<IProps>(
+  ({ isLoading, logged, toast, email, children, logoutAction }) => {
+    const { pathname } = useLocation();
 
-  // FIX THE BODY FOR NOT SCROLL
-  if (isLoading) document.getElementsByTagName("body")[0].style.overflowY = "hidden";
-  else document.getElementsByTagName("body")[0].style.overflow = "auto";
+    // FIX THE BODY FOR NOT SCROLL
+    if (isLoading)
+      document.getElementsByTagName("body")[0].style.overflowY = "hidden";
+    else document.getElementsByTagName("body")[0].style.overflow = "auto";
 
-  return (
-    <Container>
-      {logged && <Navbar logged={logged} email={email} logoutAction={logoutAction} />}
-      {isLoading && <FullScreenSpinner />}
-      {toast && <Toast toast={toast} />}
-      <Wrapper path={pathname}>{children}</Wrapper>
-    </Container>
-  );
-});
+    return (
+      <Container>
+        {logged && (
+          <Navbar logged={logged} email={email} logoutAction={logoutAction} />
+        )}
+        {isLoading && <FullScreenSpinner />}
+        {toast && <Toast toast={toast} />}
+        <Wrapper path={pathname}>{children}</Wrapper>
+      </Container>
+    );
+  }
+);
 
 const mapStateToProps = (state: any) => {
   const { authReducer, apiStatusReducer, alertReducer } = state;

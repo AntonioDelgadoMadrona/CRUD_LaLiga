@@ -1,4 +1,4 @@
-import { device } from "./../../styled";
+import { device } from "../../../utils/breakpoints";
 // DEPENDENCIES
 import styled from "styled-components";
 

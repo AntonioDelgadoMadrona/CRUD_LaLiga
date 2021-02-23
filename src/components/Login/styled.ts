@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { device } from "../styled";
+import { device } from "../../utils/breakpoints";
 
 export const LoginContainer = styled.div`
   display: grid;

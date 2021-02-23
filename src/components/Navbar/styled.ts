@@ -1,4 +1,4 @@
-import { device } from "./../styled";
+import { device } from "../../utils/breakpoints";
 import styled from "styled-components";
 
 export const StyledNavbar = styled.header`

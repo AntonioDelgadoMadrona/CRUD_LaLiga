@@ -28,8 +28,18 @@ const App: React.FC<IProps> = ({ logged }) => (
       <Layout>
         <Switch>
           {!logged && <Route exact path="/login" component={Login} />}
-          <PrivateRoute exact path="/user" component={UserDetails} logged={logged} />
-          <PrivateRoute exact path="/users" component={UserList} logged={logged} />
+          <PrivateRoute
+            exact
+            path="/user"
+            component={UserDetails}
+            logged={logged}
+          />
+          <PrivateRoute
+            exact
+            path="/users"
+            component={UserList}
+            logged={logged}
+          />
           <Redirect to={logged ? "/users" : "/login"} />
         </Switch>
       </Layout>
