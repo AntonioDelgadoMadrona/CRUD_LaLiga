@@ -10,9 +10,14 @@ import apiStatusReducer from "./reducers/apiStatusReducer/apiStatusReducer";
 import alertReducer from "./reducers/alertReducer/alertReducer";
 
 // MIDDLEWARES
+import loggedMiddleware from "./middlewares/loggedMiddleware";
 
 export default function configureStore(initialState: any, browserHistory: any) {
-  const middlewares = [thunk, routerMiddleware(browserHistory)];
+  const middlewares = [
+    thunk,
+    loggedMiddleware,
+    routerMiddleware(browserHistory),
+  ];
 
   // In development, use the browser's Redux dev tools extension if installed
   const enhancers = [];
