@@ -25,8 +25,16 @@ const Pagination = React.memo<IProps>(
       pages = [...pages, i];
     }
 
+    // DISABLE THE PREV BUTTON IF currentPage = 1
+    let prevDisabled = false;
+    if (currentPage === 1) prevDisabled = true;
+
+    // DISABLE THE NEXT BUTTON IF currentPage IS EQUAL TO totalPages
+    let nextDisabled = false;
+    if (currentPage === totalPages) nextDisabled = true;
+
     return (
-      <Container>
+      <Container data-testid="pagination-container">
         <PaginationInfo>
           <div>
             <span>Elementos por pagina: </span>
@@ -42,8 +50,11 @@ const Pagination = React.memo<IProps>(
           <PaginationPager>
             <ul>
               <li
-                className={currentPage === pages[0] ? "disabled" : ""}
-                onClick={() => handlePage(currentPage - 1)}
+                className={prevDisabled ? "disabled" : ""}
+                onClick={() =>
+                  !prevDisabled ? handlePage(currentPage - 1) : {}
+                }
+                data-testid="prev-button"
               >
                 <FontAwesomeIcon icon={faAngleLeft} />
               </li>
@@ -59,8 +70,11 @@ const Pagination = React.memo<IProps>(
                 );
               })}
               <li
-                className={currentPage === totalPages ? "disabled" : ""}
-                onClick={() => handlePage(currentPage + 1)}
+                className={nextDisabled ? "disabled" : ""}
+                onClick={() =>
+                  !nextDisabled ? handlePage(currentPage + 1) : {}
+                }
+                data-testid="next-button"
               >
                 <FontAwesomeIcon icon={faAngleRight} />
               </li>
