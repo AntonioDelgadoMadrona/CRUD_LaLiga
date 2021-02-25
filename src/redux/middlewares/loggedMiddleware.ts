@@ -1,8 +1,8 @@
 // UTILS
 import { getUserLocalStorage } from "../../utils/localStorageUtils";
 
-export default function loggedMiddleware({ dispatch }) {
-  return (next) => (action) => {
+export default function loggedMiddleware(store: any) {
+  return (next: any) => (action: any) => {
     // IF THE APP EXECUTE A REQUEST INFO, CHECKS IF THE USER HAS AUTENTICATION
     // (BY EX: WHEN CLEAR THE LOCASTORAGE)
     if (
@@ -11,8 +11,8 @@ export default function loggedMiddleware({ dispatch }) {
     ) {
       const user = getUserLocalStorage();
       if (!user) {
-        dispatch({ type: "LOGOUT_REQUEST" });
-        dispatch({
+        store.dispatch({ type: "LOGOUT_REQUEST" });
+        store.dispatch({
           type: "SHOW_TOAST",
           payload: { message: "Tu sesión ha expirado", type: "ERROR" },
         });
